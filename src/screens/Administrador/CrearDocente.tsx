@@ -14,7 +14,6 @@ const CrearDocente : FC = (props) => {
             </View>
 
             <View style={style.containerButton}>
-
               <View>
                 <Input placeholder="Identifión" onChangeText={(text) => setName(text)} />
               </View>
@@ -36,9 +35,7 @@ const CrearDocente : FC = (props) => {
               <View>
                 <Input placeholder="Contraseña" onChangeText={(text) => setName(text)} />
               </View>
-
             </View>
-
             <View style={style.containerAcept}>
               <Button
                 title="Crear Docente"

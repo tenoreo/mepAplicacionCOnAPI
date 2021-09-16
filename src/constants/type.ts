@@ -29,8 +29,8 @@ export type EstudianteParams={
 export type LoginNavigator={
     Login:undefined
     HomeAdministrador:undefined
-    HomeProfesor:undefined
-    HomeStudent:undefined
+    NavigatorProfesor:undefined
+    NavigatorStudent:undefined
 }
 
 //Para moverse del screen al modal de editar
