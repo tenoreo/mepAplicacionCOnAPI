@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Input, Button } from '../../components';
 
 
-const App : FC = (props) => {
+const CrearDocente : FC = (props) => {
   const [name, setName] = useState<string | null>(null);
 
     return (
@@ -49,7 +49,7 @@ const App : FC = (props) => {
     ) 
 }
 
-export default App;
+export default CrearDocente;
 
 const style = StyleSheet.create({
     container: {

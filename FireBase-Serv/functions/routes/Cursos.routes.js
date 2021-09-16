@@ -9,7 +9,11 @@ router.get('/api/Cursos/:ref', async(req,res)=>{
     try {
         const doc = db.collection("Cursos").doc(req.params.ref);
         const item = await doc.get();
-        response = {Id: item.id, Nombre: item.data().Nombre, NumeroCurso: item.data().NumeroCurso, ProfesorDelCurso: item.data().ProfesorDelCurso}
+        response = {
+            Id: item.id, 
+            Nombre: item.data().Nombre, 
+            NumeroCurso: item.data().NumeroCurso, 
+            ProfesorDelCurso: item.data().ProfesorDelCurso}
             return res.status(200).json(response);
     
     } catch (error) {

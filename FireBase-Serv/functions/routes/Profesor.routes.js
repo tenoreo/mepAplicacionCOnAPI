@@ -13,8 +13,13 @@ router.get('/api/Profesor/:ref', async(req,res)=>{
     try {
         const doc = db.collection("Profesor").doc(req.params.ref);
         const item = await doc.get();
-        response = {Id: item.id, Cedula: item.data().Cedula, Nombre: item.data().Nombre, Apellido1: item.data().Apellido1, Apellido2: item.data().Apellido2, 
-            Calificación: item.data().Calificación, Email: item.data().Email}
+        response = {Id: item.id, 
+            Cedula: item.data().Cedula,
+            Nombre: item.data().Nombre, 
+            Apellido1: item.data().Apellido1, 
+            Apellido2: item.data().Apellido2, 
+            Calificación: item.data().Calificación, 
+            Email: item.data().Email}
             return res.status(200).json(response);
     
     } catch (error) {

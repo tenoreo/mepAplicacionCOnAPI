@@ -42,7 +42,7 @@ const DATA = [
   },
 ];
 
-const App : FC = (props) => {
+const InfoDocente : FC = (props) => {
 
   const Item = ({curso, grado, id}) => (
   
@@ -118,7 +118,7 @@ const App : FC = (props) => {
     ) 
 }
 
-export default App;
+export default InfoDocente;
 
 const style = StyleSheet.create({
   container: {

@@ -27,7 +27,7 @@ const DATA = [
     },
   ];
 
-const App : FC = (props) => {
+const GestionEstudiante : FC = (props) => {
     const [visible, setVisible] = React.useState(false);
 
     const Item = ({nombre, cedula, email}) => (
@@ -78,7 +78,7 @@ const App : FC = (props) => {
     ) 
 }
 
-export default App;
+export default GestionEstudiante;
 
 const style = StyleSheet.create({
     container: {

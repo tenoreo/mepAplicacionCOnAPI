@@ -48,7 +48,7 @@ const DATA = [
 ];
 
 
-const App : FC = (props) => {
+const CursoProfesor : FC = (props) => {
   const [name, setName] = useState<string | null>(null);
 
   const [visible, setVisible] = React.useState(false);
@@ -120,7 +120,7 @@ const App : FC = (props) => {
     ) 
 }
 
-export default App;
+export default CursoProfesor;
 
 const style = StyleSheet.create({
   container: {

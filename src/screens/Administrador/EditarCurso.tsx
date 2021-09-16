@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
 
-const App : FC = (props) => {
+const EditarCurso : FC = (props) => {
   const [name, setName] = useState<string | null>(null);
 
     return (
@@ -37,7 +37,7 @@ const App : FC = (props) => {
     ) 
 }
 
-export default App;
+export default EditarCurso;
 
 const style = StyleSheet.create({
     container: {

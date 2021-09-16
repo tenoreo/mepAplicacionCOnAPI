@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, SafeAreaView, FlatList, StatusBar,
     Animated, TouchableOpacity, Modal, Image } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
-
+import { FontAwesome5 } from '@expo/vector-icons'
 const DATA = [
     {
       nombre: 'Josue',
@@ -28,7 +28,7 @@ const DATA = [
     },
   ];
 
-const App : FC = (props) => {
+const GestionDocente : FC = (props) => {
     const [visible, setVisible] = React.useState(false);
 
     const Item = ({nombre, cedula, email}) => (
@@ -60,10 +60,15 @@ const App : FC = (props) => {
             </View>
             <View style={style.btnImegContainerPlus}>
               <TouchableOpacity>
-                <Image
+                <FontAwesome5
+                    name="plus"
+                    size={20}
+                    color='white'
+                ></FontAwesome5>
+                {/* <Image
                   source={require('../../assets/plus.png')}
                   style={style.btnImeg}
-                />
+                /> */}
               </TouchableOpacity>
             </View>
             <View style={style.containerButton}>
@@ -79,7 +84,7 @@ const App : FC = (props) => {
     ) 
 }
 
-export default App;
+export default GestionDocente;
 
 const style = StyleSheet.create({
     container: {

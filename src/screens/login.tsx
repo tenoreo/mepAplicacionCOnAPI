@@ -13,8 +13,22 @@ import {
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from '@expo/vector-icons/build/FontAwesome';
 import Feather from '@expo/vector-icons/build/Feather';
+import {StackNavigationProp} from '@react-navigation/stack'; 
+import {LoginNavigator} from '../constants/type';
+export interface LoginProps{
+    navigation:StackNavigationProp<LoginNavigator,'Login'>
+}
 
-const Login :FC =()=>{
+const Login: React.FC<LoginProps> = ({navigation}) => {
+    const tipoUsuario=(val:any)=>{
+        if(val.email==='Estudiante'){
+            navigation.navigate('NavigatorStudent');
+        }else if(val.email==='Adminitrador'){
+            navigation.navigate('HomeAdministrador');
+        }else{
+            navigation.navigate('NavigatorProfesor');
+        }
+    }
     const [data,setData]=React.useState({
         email:'',
         password:'',
@@ -117,7 +131,7 @@ const Login :FC =()=>{
                     </TouchableOpacity>
                 </View>
                 <View style={styles.button}>
-                    <TouchableOpacity onPress={()=>alert('Click')} style={styles.signIn}>
+                    <TouchableOpacity onPress={(data)=>tipoUsuario(data)} style={styles.signIn}>
                         <Text style={[styles.textSign,{color:'#fff'}]}>Iniciar Sesion</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
