@@ -39,7 +39,7 @@ const CrearCurso = (props:HAdminitrador) => {
     ) 
 }
 
-export default App;
+export default CrearCurso;
 
 const style = StyleSheet.create({
     container: {
