@@ -1,7 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { Component, useState } from "react";
 import { View, Text, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, StatusBar, ScrollView } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
+import { HAdminitrador } from "../../constants/type";
+
+
+
 const data =     {
   id: '58694a0f-3da1-471f-bd96-145571e29d72',
   title: 'Third Item',
@@ -45,12 +49,13 @@ const DATA = [
     cedula: '123456789'
   },
 ];
-
-
-const App : FC = (props) => {
+const EstudianteCurso=(props:HAdminitrador)=>{
   const [name, setName] = useState<string | null>(null);
 
   const [visible, setVisible] = React.useState(false);
+  const devolver=():void=>{
+    props.navigation.goBack();
+  }
 
   const Item = ({nombre, ident}) => (
 
@@ -92,7 +97,7 @@ const App : FC = (props) => {
             <View>
               <Button
                 title="Buscar estudiante"
-                onPress={() => console.log('XD')}
+                onPress={devolver}
               />
             </View>
             <View>
@@ -116,10 +121,10 @@ const App : FC = (props) => {
 
       </View>
 
-    ) 
+    );
 }
+export default EstudianteCurso;
 
-export default App;
 
 const style = StyleSheet.create({
   container: {

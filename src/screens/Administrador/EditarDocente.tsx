@@ -2,8 +2,9 @@ import React, { FC, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
+import { HAdminitrador } from "../../constants/type";
 
-const EditarDocente : FC = (props) => {
+const EditarDocente=(props:HAdminitrador)=>{
   const [name, setName] = useState<string | null>(null);
 
     return (
@@ -42,11 +43,11 @@ const EditarDocente : FC = (props) => {
             <View style={style.containerAcept}>
               <Button
                 title="Editar Docente"
-                onPress={() => console.log('XD')}
+                onPress={() => props.navigation.navigate('GestionDocente')}
               />
             </View>
         </View>
-    ) 
+    );
 }
 
 export default EditarDocente;

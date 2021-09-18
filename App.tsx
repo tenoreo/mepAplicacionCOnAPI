@@ -1,16 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import BottomNavigation from './src/navigators/bottomNavigator';
-import Login from './src/screens/login';
-import CrearDocente from './src/screens/Administrador/crearDocente';
-import CursoProfesor from './src/screens/Administrador/cursoProfesor';
-import EditarDocente from './src/screens/administrador/editarDocente';
-import GestionDocente from './src/screens/administrador/gestionDocente';
+//import NavigatorInicio from './src/navigators/NavigatorInicio';
+
+import AdministradorNavigator from './src/navigators/AdministradorNavigator';
+//import HomeAdminitrador from './src/screens/Administrador/HomeAdminitrador';
+
+//import HomeAdministrador from './src/screens/Administrador/HomeAdministrador';
 export default function App() {
   return (
-    < GestionDocente/>
+    < AdministradorNavigator/>
   );
 }
 

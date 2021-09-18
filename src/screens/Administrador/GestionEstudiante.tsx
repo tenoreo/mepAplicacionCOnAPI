@@ -1,34 +1,20 @@
 import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
-import React, { FC } from "react";
+import React, { Component } from "react";
 import { View, Text, StyleSheet, SafeAreaView, FlatList, StatusBar,
     Animated, TouchableOpacity, Modal, Image } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
-const DATA = [
-    {
-      nombre: 'Josue',
-      cedula: '123456789',
-      email: 'djflasdjkfjldsjflasj'
-    },
-    {
-      nombre: 'Josue',
-      cedula: '123456789',
-      email: 'djflasdjkfjldsjflasj'
-    },
-    {
-      nombre: 'Josue',
-      cedula: '123456789',
-      email: 'djflasdjkfjldsjflasj'
-    },
-    {
-      nombre: 'Josue',
-      cedula: '123456789',
-      email: 'djflasdjkfjldsjflasj'
-    },
-  ];
+import { FontAwesome5 } from '@expo/vector-icons';
+import { Administrador } from "../../constants";
+import {HAdminitrador} from '../../constants/type';
 
-const GestionEstudiante : FC = (props) => {
-    const [visible, setVisible] = React.useState(false);
+
+const GestionEstudiante=(props:HAdminitrador)=>{
+  //Agregar nuevo estudiante
+  const nuevoEstudiante=():void=>{
+    props.navigation.navigate(Administrador.CrearEstudiante);
+  }
+  const [visible, setVisible] = React.useState(false);
 
     const Item = ({nombre, cedula, email}) => (
       console.log(nombre),
@@ -51,34 +37,58 @@ const GestionEstudiante : FC = (props) => {
             email={item.email}
         />
     );
-     
     return (
-        <View style={style.container}>
-            <View style={style.containertitulo}>
-                <Text style={style.titulo}>GESTION ESTUDIANTES</Text>
-            </View>
-            <View style={style.btnImegContainerPlus}>
-              <TouchableOpacity>
-                <Image
-                  source={require('../../assets/plus.png')}
-                  style={style.btnImeg}
-                />
-              </TouchableOpacity>
-            </View>
-            <View style={style.containerButton}>
+      <View style={style.container}>
+          <View style={style.containertitulo}>
+              <Text style={style.titulo}>GESTION ESTUDIANTES</Text>
+          </View>
+          <View style={style.btnImegContainerPlus}>
+            <TouchableOpacity onPress={nuevoEstudiante}>
+            <FontAwesome5
+                  name="plus"
+                  size={20}
+                  color='white'
+              ></FontAwesome5>
+            </TouchableOpacity>
+          </View>
+          <View style={style.containerButton}>
 
-                <SafeAreaView style={style.containerList}>
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                    />
-                </SafeAreaView>
-            </View>
-        </View>
-    ) 
+              <SafeAreaView style={style.containerList}>
+                  <FlatList
+                      data={DATA}
+                      renderItem={renderItem}
+                  />
+              </SafeAreaView>
+          </View>
+      </View>
+    );
 }
+export default  GestionEstudiante;
 
-export default GestionEstudiante;
+
+
+const DATA = [
+    {
+      nombre: 'Josue',
+      cedula: '123456789',
+      email: 'djflasdjkfjldsjflasj'
+    },
+    {
+      nombre: 'Josue',
+      cedula: '123456789',
+      email: 'djflasdjkfjldsjflasj'
+    },
+    {
+      nombre: 'Josue',
+      cedula: '123456789',
+      email: 'djflasdjkfjldsjflasj'
+    },
+    {
+      nombre: 'Josue',
+      cedula: '123456789',
+      email: 'djflasdjkfjldsjflasj'
+    },
+  ];
 
 const style = StyleSheet.create({
     container: {

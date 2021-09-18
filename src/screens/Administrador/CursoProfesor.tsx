@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { View, Text, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, StatusBar, ScrollView } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
+import { HAdminitrador } from "../../constants/type";
 
 const data =     {
   id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -48,7 +49,7 @@ const DATA = [
 ];
 
 
-const CursoProfesor : FC = (props) => {
+const CursoProfesor = (props:HAdminitrador) => {
   const [name, setName] = useState<string | null>(null);
 
   const [visible, setVisible] = React.useState(false);

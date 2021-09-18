@@ -1,63 +1,65 @@
 import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
-import React, { FC } from "react";
+import React, { Component } from "react";
 import { View, Text, StyleSheet, SafeAreaView, FlatList, StatusBar,
     Animated, TouchableOpacity, Modal, Image } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
+import { FontAwesome,FontAwesome5,Entypo } from '@expo/vector-icons';
+import { HAdminitrador } from "../../constants/type";
 
-const DATA = [
-  {
-    curso: 'Matemáticas',
-    grado: '4',
-    id: 'abc123'
-  },
-  {
-    curso: 'Matemáticas',
-    grado: '4',
-    id: 'abc123'
-  },
-  {
-    curso: 'Matemáticas',
-    grado: '4',
-    id: 'abc123'
-  },
-  {
-    curso: 'Matemáticas',
-    grado: '4',
-    id: 'abc123'
-  },
-  {
-    curso: 'Matemáticas',
-    grado: '4',
-    id: 'abc123'
-  },
-  {
-    curso: 'Matemáticas',
-    grado: '4',
-    id: 'abc123'
-  },
-  {
-    curso: 'Matemáticas',
-    grado: '4',
-    id: 'abc123'
-  },
-];
 
-const InfoEstudiante : FC = (props) => {
+// const DATA = [
+//   {
+//     curso: 'Matemáticas',
+//     grado: '4',
+//     id: 'abc123'
+//   },
+//   {
+//     curso: 'Matemáticas',
+//     grado: '4',
+//     id: 'abc123'
+//   },
+//   {
+//     curso: 'Matemáticas',
+//     grado: '4',
+//     id: 'abc123'
+//   },
+//   {render()
+//     curso: 'Matemáticas',
+//     grado: '4',
+//     id: 'abc123'
+//   },
+//   {
+//     curso: 'Matemáticas',
+//     grado: '4',
+//     id: 'abc123'
+//   },
+//   {
+//     curso: 'Matemáticas',
+//     grado: '4',
+//     id: 'abc123'
+//   },
+//   {
+//     curso: 'Matemáticas',
+//     grado: '4',
+//     id: 'abc123'
+//   },
+// ];
 
+const InfoEstudiante =(props:HAdminitrador)=>{
   const Item = ({curso, grado, id}) => (
-  
+    
     <TouchableOpacity onPress={() => { console.log(curso)} }>
- 
+  
       <View style={style.itemText}>
         <Text>Curso:  {curso}</Text>
         <Text>Grado:  {grado}</Text>
         <Text>ID:         {id}</Text>
       </View>
-
+  
     </TouchableOpacity>
   );
-
+  
   const renderItem = ({ item }) => (
     console.log(item),
       <Item
@@ -67,58 +69,60 @@ const InfoEstudiante : FC = (props) => {
       />
   );
 
-    return (
-      <View style={style.container}>
+  return (
+    <View style={style.container}>
 
-        <View>
-            <Text style={style.titulo}>INFORMACIÓN ESTUDIANTE</Text>
+      <View>
+          <Text style={style.titulo}>INFORMACIÓN ESTUDIANTE</Text>
+      </View>
+
+      <View style={style.containerInfoDocente}>
+        <View style={style.infoDocente}>
+          <Text>Nombre: Josué Torres Narvaez</Text>
+          <Text>Cédula:   123456789</Text>
+          <Text>E-mail:     josuetorres@mep.com</Text>
+          <Text>Calificación: 8 de 10</Text>
         </View>
 
-        <View style={style.containerInfoDocente}>
-          <View style={style.infoDocente}>
-            <Text>Nombre: Josué Torres Narvaez</Text>
-            <Text>Cédula:   123456789</Text>
-            <Text>E-mail:     josuetorres@mep.com</Text>
-            <Text>Calificación: 8 de 10</Text>
-          </View>
+        <SafeAreaView style={style.containerList}>
+          <FlatList
+            data={DATA}
+            renderItem={renderItem}
+          />
+        </SafeAreaView>
+      </View>
 
-          <SafeAreaView style={style.containerList}>
-            <FlatList
-              data={DATA}
-              renderItem={renderItem}
-            />
-          </SafeAreaView>
-        </View>
+      <View style={style.containerbtnFloats}>
 
-        <View style={style.containerbtnFloats}>
+        <TouchableOpacity style={style.btnContainerEli}>
+          <FontAwesome
+            name="trash"
+            size={20}
+            color='white'
+          ></FontAwesome>
+        </TouchableOpacity>
 
-          <TouchableOpacity style={style.btnContainerEli}>
-            <Image
-              source={require('../../assets/eliminar.png')}
-              style={style.btnPlus}
-            />
-          </TouchableOpacity>
+        <TouchableOpacity style={style.btnContainer}>
+          <Entypo
+              name="edit"
+              size={20}
+              color='white'
+          ></Entypo>
+        </TouchableOpacity>
 
-          <TouchableOpacity style={style.btnContainer}>
-            <Image
-              source={require('../../assets/editar.png')}
-              style={style.btnPlus}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity style={style.btnContainer}>
-            <Image
-              source={require('../../assets/plus.png')}
-              style={style.btnPlus}
-            />
-          </TouchableOpacity>
-
-        </View>
+        <TouchableOpacity style={style.btnContainer}>
+        <FontAwesome5
+          name="plus"
+          size={20}
+          color='white'
+        ></FontAwesome5>
+        </TouchableOpacity>
 
       </View>
-    ) 
-}
 
+    </View>
+  );
+}
 export default InfoEstudiante;
 
 const style = StyleSheet.create({

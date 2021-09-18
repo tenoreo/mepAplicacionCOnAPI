@@ -2,9 +2,11 @@ import React, { FC, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
+import { HAdminitrador } from "../../constants/type";
 
-const EditarCurso : FC = (props) => {
-  const [name, setName] = useState<string | null>(null);
+
+const EditarCurso=(props:HAdminitrador)=>{
+    const [name, setName] = useState<string | null>(null);
 
     return (
         <View style={style.container}>
@@ -30,11 +32,11 @@ const EditarCurso : FC = (props) => {
             <View style={style.containerAcept}>
               <Button
                 title="Aceptar Cambio"
-                onPress={() => console.log('XD')}
+                onPress={()=>props.navigation.navigate('GestionCurso')}
               />
             </View>
         </View>
-    ) 
+    ); 
 }
 
 export default EditarCurso;
@@ -67,6 +69,3 @@ const style = StyleSheet.create({
         // padding: 5,
     }
 })
-
-
-// onPress={() => props.navigation.navigate('login')}

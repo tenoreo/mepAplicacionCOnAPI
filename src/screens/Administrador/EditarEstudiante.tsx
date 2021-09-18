@@ -2,8 +2,9 @@ import React, { FC, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
+import { HAdminitrador } from "../../constants/type";
 
-const App : FC = (props) => {
+const EditarEstudiante=(props:HAdminitrador)=>{
   const [name, setName] = useState<string | null>(null);
 
     return (
@@ -16,7 +17,7 @@ const App : FC = (props) => {
             <View style={style.containerButton}>
 
               <View>
-                <Input placeholder="Identifión" onChangeText={(text) => setName(text)} />
+                <Input placeholder="Identificación" onChangeText={(text) => setName(text)} />
               </View>
               <View>
                 <Input placeholder="Nombre" onChangeText={(text) => setName(text)} />
@@ -42,14 +43,13 @@ const App : FC = (props) => {
             <View style={style.containerAcept}>
               <Button
                 title="Editar Estudiante"
-                onPress={() => console.log('XD')}
+                onPress={() => props.navigation.navigate('GestionEstudiante')}
               />
             </View>
         </View>
-    ) 
+    ); 
 }
-
-export default App;
+export default EditarEstudiante;
 
 const style = StyleSheet.create({
     container: {

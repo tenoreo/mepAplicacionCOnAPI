@@ -1,4 +1,4 @@
-const {Router} = require('express')
+const {Router} = require('express');
 const router = Router();
 const admin = require('firebase-admin');//Esta constante es la encargada de proporcionar la 
 
@@ -94,7 +94,7 @@ router.get('/api/Cursos', async(req,res)=>{
         
         const response = docs.map((doc)=>({
             Id: doc.id,
-            Nombre: doc.data().Nombre,
+            NombreCurso: doc.data(),
         }));
         return res.status(200).json(response);
     

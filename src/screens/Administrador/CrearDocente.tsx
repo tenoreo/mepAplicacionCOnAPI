@@ -1,9 +1,10 @@
 import React, { FC, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Input, Button } from '../../components';
+import { HAdminitrador } from "../../constants/type";
 
 
-const CrearDocente : FC = (props) => {
+const CrearDocente = (props:HAdminitrador) => {
   const [name, setName] = useState<string | null>(null);
 
     return (
@@ -39,7 +40,7 @@ const CrearDocente : FC = (props) => {
             <View style={style.containerAcept}>
               <Button
                 title="Crear Docente"
-                onPress={() => console.log('XD')}
+                onPress={props.navigation.navigate('CrearDocente')}
               />
             </View>
         </View>

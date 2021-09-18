@@ -1,35 +1,21 @@
 import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
-import React, { FC } from "react";
+import React, { Component,useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView, FlatList, StatusBar,
     Animated, TouchableOpacity, Modal, Image } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
-import { FontAwesome5 } from '@expo/vector-icons'
-const DATA = [
-    {
-      nombre: 'Josue',
-      cedula: '123456789',
-      email: 'djflasdjkfjldsjflasj'
-    },
-    {
-      nombre: 'Josue',
-      cedula: '123456789',
-      email: 'djflasdjkfjldsjflasj'
-    },
-    {
-      nombre: 'Josue',
-      cedula: '123456789',
-      email: 'djflasdjkfjldsjflasj'
-    },
-    {
-      nombre: 'Josue',
-      cedula: '123456789',
-      email: 'djflasdjkfjldsjflasj'
-    },
-  ];
 
-const GestionDocente : FC = (props) => {
-    const [visible, setVisible] = React.useState(false);
+import { FontAwesome5 } from '@expo/vector-icons';
+
+import { Administrador } from "../../constants";
+import {HAdminitrador} from '../../constants/type';
+
+const GestionDocente=(props:HAdminitrador)=>{
+  const AgregarNuevoDocente=():void=>{
+    props.navigation.navigate(Administrador.CrearDocente);
+  }
+  
+  const [visible, setVisible] = useState(false);
 
     const Item = ({nombre, cedula, email}) => (
       console.log(nombre),
@@ -52,39 +38,60 @@ const GestionDocente : FC = (props) => {
             email={item.email}
         />
     );
-     
     return (
-        <View style={style.container}>
-            <View style={style.containertitulo}>
-                <Text style={style.titulo}>GESTION DOCENTES</Text>
-            </View>
-            <View style={style.btnImegContainerPlus}>
-              <TouchableOpacity>
-                <FontAwesome5
-                    name="plus"
-                    size={20}
-                    color='white'
-                ></FontAwesome5>
-                {/* <Image
-                  source={require('../../assets/plus.png')}
-                  style={style.btnImeg}
-                /> */}
-              </TouchableOpacity>
-            </View>
-            <View style={style.containerButton}>
+      <View style={style.container}>
+          <View style={style.containertitulo}>
+              <Text style={style.titulo}>GESTION DOCENTES</Text>
+          </View>
+          <View style={style.btnImegContainerPlus}>
+            <TouchableOpacity onPress={AgregarNuevoDocente}>
+              <FontAwesome5
+                  name="plus"
+                  size={20}
+                  color='white'
+              ></FontAwesome5>
+              {/* <Image
+                source={require('../../assets/plus.png')}
+                style={style.btnImeg}
+              /> */}
+            </TouchableOpacity>
+          </View>
+          <View style={style.containerButton}>
 
-                <SafeAreaView style={style.containerList}>
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                    />
-                </SafeAreaView>
-            </View>
-        </View>
-    ) 
+              <SafeAreaView style={style.containerList}>
+                  <FlatList
+                      data={DATA}
+                      renderItem={renderItem}
+                  />
+              </SafeAreaView>
+          </View>
+      </View>
+    );
 }
-
 export default GestionDocente;
+  
+const DATA = [
+    {
+      nombre: 'Josue',
+      cedula: '123456789',
+      email: 'djflasdjkfjldsjflasj'
+    },
+    {
+      nombre: 'Josue',
+      cedula: '123456789',
+      email: 'djflasdjkfjldsjflasj'
+    },
+    {
+      nombre: 'Josue',
+      cedula: '123456789',
+      email: 'djflasdjkfjldsjflasj'
+    },
+    {
+      nombre: 'Josue',
+      cedula: '123456789',
+      email: 'djflasdjkfjldsjflasj'
+    },
+  ];
 
 const style = StyleSheet.create({
     container: {

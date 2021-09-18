@@ -1,44 +1,29 @@
-import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
-import React, { FC } from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView, FlatList, StatusBar,
     Animated, TouchableOpacity, Modal, Image } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Input, Button } from '../../components';
-const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-      curso: 'Matematicas',
-      horario: 'Viernes 9:00am a 12:00pm',
-      idCurso: '1234',
-      grado: '2'
+import { Administrador } from "../../constants";
+import {HAdminitrador} from '../../constants/type';
+import { FontAwesome5 } from '@expo/vector-icons';
+import firebase from 'firebase';
 
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-      curso: 'Matematicasno',
-      horario: 'Viernes 9:00am a 12:00pm',
-      idCurso: '1234',
-      grado: '2'
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d73',
-      title: 'Third Item',
-      curso: 'Matematicas',
-      horario: 'Viernes 9:00am a 12:00pm',
-      idCurso: '1234',
-      grado: '2'
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
-        title: 'Third Item',
-        curso: 'Matematicas',
-        horario: 'Viernes 9:00am a 12:00pm',
-        idCurso: '1234',
-        grado: '2'
-    },
-  ];
+const GestionCurso =(props:HAdminitrador)=>{
+
+  const [visible, setVisible] = useState(false);
+  const [cursos,setCursos]=useState<any>([]);
+
+  const agregarCurso=():void=>{
+    props.navigation.navigate(Administrador.CrearCurso);
+  }
+
+  const obtenerCursos=async() => {
+    firebase.firestore().collection('Cursos').onSnapShot(querySnapShot=>{
+      const documents=querySnapShot.docs;
+      setCursos(documents);
+      console.log(documents);
+    })
+  }
 
   const ModalPoup = ({visible, children}) => {
     const [showModal, setShowModal] = React.useState(visible);
@@ -74,9 +59,6 @@ const DATA = [
       </Modal>
     );
   };
-
-const App : FC = (props) => {
-    const [visible, setVisible] = React.useState(false);
 
     const Item = ({title, curso, horario, idCurso, grado}) => (
 
@@ -140,44 +122,43 @@ const App : FC = (props) => {
 
             </TouchableOpacity>
     );
-
     const renderItem = ({ item }) => (
 
-        <Item title={item.idCurso}
-            curso={item.curso}
-            horario={item.horario}
-            idCurso={item.idCurso}
-            grado={item.grado}
-        />
-    );
-     
-    return (
-        <View style={style.container}>
-            <View style={style.containertitulo}>
-                <Text style={style.titulo}>GESTION CURSOS</Text>
-            </View>
-            <View style={style.btnImegContainerPlus}>
-              <TouchableOpacity>
-                <Image
-                  source={require('../../assets/plus.png')}
-                  style={style.btnImeg}
-                />
-              </TouchableOpacity>
-            </View>
-            <View style={style.containerButton}>
-
-                <SafeAreaView style={style.containerList}>
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                    />
-                </SafeAreaView>
-            </View>
+      <Item title={item.idCurso}
+          curso={item.curso}
+          horario={item.horario}
+          idCurso={item.idCurso}
+          grado={item.grado}
+      />
+  );
+  return (
+    <View style={style.container}>
+        <View style={style.containertitulo}>
+            <Text style={style.titulo}>GESTION CURSOS</Text>
         </View>
-    ) 
-}
+        <View style={style.btnImegContainerPlus}>
+          <TouchableOpacity onPress={agregarCurso}>
+          <FontAwesome5
+                  name="plus"
+                  size={20}
+                  color='white'
+              ></FontAwesome5>
+          </TouchableOpacity>
+        </View>
+        <View style={style.containerButton}>
 
-export default App;
+            <SafeAreaView style={style.containerList}>
+                <FlatList
+                    data={cursos}
+                    renderItem={renderItem}
+                />
+            </SafeAreaView>
+        </View>
+    </View>
+); 
+
+}
+export default GestionCurso;
 
 const style = StyleSheet.create({
     container: {
@@ -307,4 +288,4 @@ const style = StyleSheet.create({
       width: '100%',
     }
 
-})
+});
